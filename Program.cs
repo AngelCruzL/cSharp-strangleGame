@@ -28,7 +28,7 @@ namespace StrangleGame
         switch (menuOption)
         {
           case "1":
-            Console.WriteLine("Jugar partida");
+            Game game = new Game();
             break;
 
           case "2":
