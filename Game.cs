@@ -211,6 +211,16 @@ namespace StrangleGame
         if (inputChar >= 'a' && inputChar <= 'z')
         {
           System.Console.WriteLine("Caracter valido");
+          if (!InputCharsList.Contains(inputChar))
+          {
+            InputCharsList.Add(inputChar);
+          }
+          else
+          {
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine($"Ya has introducido la letra \"{inputChar}\"");
+            Console.ForegroundColor = ConsoleColor.White;
+          }
         }
       }
 
