@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace StrangleGame
 {
@@ -8,7 +9,7 @@ namespace StrangleGame
     public Game()
     {
       NumberOfAttempts = 6;
-      SecretWord = "hola mundo";
+      SecretWord = LoadRandomWord();
       char[] charListElements = (SecretWord.ToLower()).ToCharArray();
       SecretWordChars = new List<char>(charListElements);
       GameWordChardsShow = "";
@@ -233,6 +234,13 @@ namespace StrangleGame
         Console.WriteLine("Felicidades, has ganado!");
         Console.ForegroundColor = ConsoleColor.White;
       }
+    }
+
+    private string LoadRandomWord()
+    {
+      string loadText = File.ReadAllText(@"data/sagas-miticas.txt");
+      string[] words = loadText.Split('\n');
+      return words[new Random().Next(0, words.Length)];
     }
 
     private void CheckIfExistCharInSecretWord(char inputChar)
