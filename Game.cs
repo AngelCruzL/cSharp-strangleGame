@@ -189,8 +189,6 @@ namespace StrangleGame
     {
       while (NumberOfAttempts > 0 && SecretWordChars.Contains('_'))
       {
-        Console.WriteLine($"Intentos restantes: {NumberOfAttempts}");
-
         char inputChar = ' ';
         Console.Write("Introduce una letra: ");
 
@@ -216,6 +214,7 @@ namespace StrangleGame
             InputCharsList.Add(inputChar);
             CheckIfExistCharInSecretWord(inputChar);
             DrawGameImage();
+            Console.WriteLine("Adivina la palabra: " + GameWordChardsShow);
           }
           else
           {
@@ -238,6 +237,7 @@ namespace StrangleGame
     {
       if (CorrectChars.Contains(inputChar))
       {
+        GameWordChardsShow = "";
         Console.WriteLine("Letra acertada 🚀");
 
         for (int i = 0; i < SecretWordChars.Count; i++)
@@ -246,6 +246,8 @@ namespace StrangleGame
           {
             SecretWordChars[i] = inputChar;
           }
+
+          GameWordChardsShow += (SecretWordChars[i] != ' ') ? $"{SecretWordChars[i]} " : "   ";
         }
       }
       else
