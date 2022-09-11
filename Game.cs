@@ -39,6 +39,8 @@ namespace StrangleGame
       Console.WriteLine("==============================");
       Console.WriteLine($"Intentos restantes: {NumberOfAttempts}");
       Console.WriteLine("==============================");
+      System.Console.WriteLine("");
+
       switch (NumberOfAttempts)
       {
         case 6:
@@ -208,9 +210,9 @@ namespace StrangleGame
 
         if (inputChar >= 'a' && inputChar <= 'z')
         {
-          System.Console.WriteLine("Caracter valido");
           if (!InputCharsList.Contains(inputChar))
           {
+            Console.Clear();
             InputCharsList.Add(inputChar);
             CheckIfExistCharInSecretWord(inputChar);
             DrawGameImage();
@@ -239,6 +241,7 @@ namespace StrangleGame
       {
         GameWordChardsShow = "";
         Console.WriteLine("Letra acertada 🚀");
+        Console.WriteLine("");
 
         for (int i = 0; i < SecretWordChars.Count; i++)
         {
