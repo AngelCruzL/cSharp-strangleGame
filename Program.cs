@@ -29,6 +29,7 @@ namespace StrangleGame
         {
           case "1":
             Game game = new Game();
+            game.Play();
             break;
 
           case "2":

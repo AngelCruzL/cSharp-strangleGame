@@ -7,7 +7,7 @@ namespace StrangleGame
   {
     public Game()
     {
-      NumberOfAttempts = 0;
+      NumberOfAttempts = 6;
       SecretWord = "hola mundo";
       char[] charListElements = (SecretWord.ToLower()).ToCharArray();
       SecretWordChars = new List<char>(charListElements);
@@ -182,6 +182,47 @@ namespace StrangleGame
           }
           Console.WriteLine("__________");
           break;
+      }
+    }
+
+    public void Play()
+    {
+      while (NumberOfAttempts > 0 && SecretWordChars.Contains('_'))
+      {
+        Console.WriteLine($"Intentos restantes: {NumberOfAttempts}");
+
+        char inputChar = ' ';
+        Console.Write("Introduce una letra: ");
+
+        try
+        {
+          inputChar = Console.ReadLine().ToLower()[0];
+        }
+        catch (IndexOutOfRangeException)
+        {
+          Console.WriteLine("Debes introducir una letra");
+          inputChar = '.';
+        }
+        catch (Exception e)
+        {
+          Console.WriteLine(e.Message);
+        }
+
+        if (inputChar >= 'a' && inputChar <= 'z')
+        {
+          System.Console.WriteLine("Caracter valido");
+        }
+      }
+
+      if (NumberOfAttempts == 0)
+      {
+        DrawGameImage();
+      }
+      else if (!SecretWordChars.Contains('_'))
+      {
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine("Felicidades, has ganado!");
+        Console.ForegroundColor = ConsoleColor.White;
       }
     }
 
