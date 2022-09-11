@@ -214,6 +214,8 @@ namespace StrangleGame
           if (!InputCharsList.Contains(inputChar))
           {
             InputCharsList.Add(inputChar);
+            CheckIfExistCharInSecretWord(inputChar);
+            DrawGameImage();
           }
           else
           {
@@ -224,15 +226,32 @@ namespace StrangleGame
         }
       }
 
-      if (NumberOfAttempts == 0)
-      {
-        DrawGameImage();
-      }
-      else if (!SecretWordChars.Contains('_'))
+      if (!SecretWordChars.Contains('_'))
       {
         Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine("Felicidades, has ganado!");
         Console.ForegroundColor = ConsoleColor.White;
+      }
+    }
+
+    private void CheckIfExistCharInSecretWord(char inputChar)
+    {
+      if (CorrectChars.Contains(inputChar))
+      {
+        Console.WriteLine("Letra acertada 🚀");
+
+        for (int i = 0; i < SecretWordChars.Count; i++)
+        {
+          if (CorrectChars[i] == inputChar)
+          {
+            SecretWordChars[i] = inputChar;
+          }
+        }
+      }
+      else
+      {
+        NumberOfAttempts--;
+        Console.WriteLine("Letra incorrecta");
       }
     }
 
